@@ -8,6 +8,11 @@ int main()
   mes = ((n % 1000000) - (n % 10000)) / 10000;
   ano = n % 10000;
 
+  if ( mes > 12 || mes == 0)
+  {
+    printf("Data invalida!\n");
+  }
+
   switch (mes)
   {
   case 12:
