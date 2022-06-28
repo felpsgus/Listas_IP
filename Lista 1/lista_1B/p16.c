@@ -1,23 +1,67 @@
 #include <stdio.h>
 
 int main() {
-    int num1, num2, num3;
-    //char A, B, C;
-    char letter[3];
-    scanf("%d %d %d", &num1, &num2, &num3);
-    for (int i = 0; i < 3; i++)
+    int num1, num2, num3, aux;
+    char A, B, C;
+    scanf("%d %d %d\n", &num1, &num2, &num3);
+    scanf("%c %c %c", &A, &B, &C);
+
+    if (num1 > num2)
     {
-        scanf("%s", &letter[i]);
+        aux = num1;
+        num1 = num2;
+        num2 = aux;
     }
 
-    for (int i = 0; i < 1; i++)
+    if (num2 > num3)
     {
-        char A = letter[i];
-        //char B = letter[i+1];
-        //char C = letter[i+2];
+        aux = num2;
+        num2 = num3;
+        num3 = aux;
     }
-
     
-    printf("%d %d %d\n", num1, num2, num3);
-    printf("%c\n", A);
+    if (A=='A')
+    {
+        if (B=='B')
+        {
+            printf("%d %d %d\n", num1, num2, num3);
+            //A B C
+        }
+        
+        if (B=='C')
+        {
+            printf("%d %d %d\n", num1, num3, num2);
+            //A C B
+        }
+    }
+
+    if (A=='B')
+    {
+        if (B=='A')
+        {
+            printf("%d %d %d\n", num2, num1, num3);
+            //B A C
+        }
+        
+        if (B=='C')
+        {
+            printf("%d %d %d\n", num2, num3, num1);
+            //B C A
+        }
+    }
+
+    if (A=='C')
+    {
+        if (B=='A')
+        {
+            printf("%d %d %d\n", num3, num1, num2);
+            //C A B
+        }
+        
+        if (B=='B')
+        {
+            printf("%d %d %d\n", num3, num2, num1);
+            //C B A
+        }
+    }
 }
