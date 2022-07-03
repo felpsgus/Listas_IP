@@ -16,4 +16,5 @@ int main()
       printf("%.0lf %.2lf\n", matricula, salarioFinal);
     }
   }
+  return 0;
 }
