@@ -1,21 +1,4 @@
 #include <stdio.h>
- 
-int fatoracao(int numero, int fator){
-    int i;
-        
-        while (i != 0)
-        {
-                if ((numero%fator) == 0){
-                    i = 0;
-                }
-                else{
-                    fator++;
-                }
-
-        }
-    return fator;
-}
-
 
 int main()
 {
@@ -26,7 +9,6 @@ int main()
     {
         if (n1 % fator == 0 || n2 % fator == 0 || n3 % fator == 0)
         {
-
             mmc = mmc * fator;
             printf("%d %d %d :%d\n", n1, n2, n3, fator);
 
