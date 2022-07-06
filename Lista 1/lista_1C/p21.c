@@ -16,7 +16,7 @@ int main()
             {
                 n1 = n1 / fator;
             }
-            
+
             if (n2 != 1 && n2 % fator == 0)
             {
                 n2 = n2 / fator;
