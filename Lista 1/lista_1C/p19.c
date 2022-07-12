@@ -1,6 +1,31 @@
 #include <stdio.h>
 #include <math.h>
 
+int verificacao(int N, int M, int vetor[N], int numero)
+{
+    int i, sinal = 0;
+    for (i = 0; i < N; i++)
+    {
+        if (numero == vetor[i])
+        {
+            sinal = 1;
+        }
+    }
+
+    if (sinal == 1)
+    {
+        printf("ACHEI\n");
+    }
+    else
+    {
+        printf("NAO ACHEI\n");
+    }
+    
+
+
+    return 0;
+}
+
 int main()
 {
   int n, hipotenusa = 1, cateto1 = 1, cateto2, i, passou, k;

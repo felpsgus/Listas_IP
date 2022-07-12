@@ -19,8 +19,6 @@ int verificacao(int N, int M, int vetor[N], int numero)
     {
         printf("NAO ACHEI\n");
     }
-    
-
 
     return 0;
 }

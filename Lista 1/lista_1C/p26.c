@@ -13,38 +13,28 @@ int divisores(int numero)
   return soma;
 }
 
-int numerosAmigos(int n)
-{
-  int limite = 1, numero, impresso;
-  while (limite != 0)
-  {
-    numero = divisores(n);
-    if (divisores(numero) == n)
-    {
-      if (numero != n && n != impresso)
-      {
-        printf("(%d,%d)\n", n, numero);
-        limite = 0;
-        impresso = numero;
-        return n;
-      }
-    }
-    n++;
-  }
-}
-
 int main()
 {
-  int numero, i, n = 1;
+  int numero, i, n = 1, valor, impresso;
 
   scanf("%d", &numero);
 
-  if (numero < 9)
+  if (numero <= 9)
   {
-    for (i = 0; i < numero; i++)
+    for (i = 1; numero != 0; i++)
     {
-      n = numerosAmigos(n);
-      n++;
+      valor = divisores(i);
+
+      if (divisores(valor) == i)
+      {
+        if (valor != i && i != impresso)
+        {
+          printf("(%d,%d)\n", i, valor);
+          impresso = valor;
+          numero--;
+        }
+        i++;
+      }
     }
   }
 }
