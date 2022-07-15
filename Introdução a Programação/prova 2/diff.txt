@@ -1,0 +1,9 @@
+Total de vendas da segunda-feira: 780.00
+Total de vendas da terça-feira: 0.00
+Total de vendas da quarta-feira: 2535.00
+Total de vendas da quinta-feira: 0.00
+Total de vendas da sexta-feira: 2070.90
+Total de vendas da semana: 5385.90
+Total de vendas semanais do funcionário 1: 705.00
+Total de vendas semanais do funcionário 2: 2044.00
+Total de vendas semanais do funcionário 3: 2636.90
