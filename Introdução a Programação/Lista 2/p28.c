@@ -31,11 +31,11 @@ int verificacao(int n, int N, int arr[N])
     }
     if (cont == 0)
     {
-        return 0;
+        return 1;
     }
     else
     {
-        return 1;
+        return 0;
     }
 }
 
@@ -64,34 +64,30 @@ int imprimirValor(int n, int arr[n])
 
 int criarUniao(int n1, int n2, int arrA[n1], int arrB[n2])
 {
-    int i, k, n, j;
+    int i, n, j;
 
     n = n1 + n2;
 
     j = n1;
 
     int uniao[n];
+    int igual[100];
 
     for (i = 0; i < n1; i++)
     {
         uniao[i] = arrA[i];
     }
 
-    for (k = 0; k < n1; k++)
+    for (i = 0; i < n2; i++)
     {
-        for (i = 0; i < n2; i++)
+        if (verificacao(arrB[i], n1, uniao))
         {
-            if (!verificacao(uniao[k], n2, arrB))
-            {
-                uniao[j] = arrB[i];
-                j++;
-                k++;
-            }
-            else
-            {
-                k++;
-                n--;
-            }
+            uniao[j] = arrB[i];
+            j++;
+        }
+        else
+        {
+            n--;
         }
     }
 
@@ -100,27 +96,35 @@ int criarUniao(int n1, int n2, int arrA[n1], int arrB[n2])
 
 int criarIntercecao(int n1, int n2, int arrA[n1], int arrB[n2])
 {
-    int i, n = 0, h = 0;
+    int i, n, j, h = 0;
 
-    int intercecao[n];
+    int intercecao[n1];
 
     for (i = 0; i < n2; i++)
     {
-        if (verificacao(arrB[i], n1, arrA))
+        for (j = 0; j < n1; j++)
         {
-            intercecao[i] = arrB[i];
-            h++;
+            if (arrA[j] == arrB[i])
+            {
+                intercecao[h] = arrA[j];
+                h++;
+            }
         }
     }
 
     n = h;
+
+    if (h == 0)
+    {
+        printf("()\n");
+    }
 
     imprimirValor(n, intercecao);
 }
 
 int main()
 {
-    int n1, n2, i, k = 0;
+    int n1, n2, i, k;
 
     n1 = lerN();
     n2 = lerN();
@@ -132,14 +136,19 @@ int main()
     {
         scanf("%d", &arrA[i]);
 
-        while (k < i)
+        k = 0;
+        for (k = 0; k < i; k++)
         {
             if (arrA[i] == arrA[k])
             {
                 scanf("%d", &arrA[i]);
                 k = 0;
+                /*n1--;
+                if (n1 == i)
+                {
+                    break;
+                }*/
             }
-            k++;
         }
     }
 
@@ -147,14 +156,20 @@ int main()
     {
         scanf("%d", &arrB[i]);
 
-        while (k < i)
+        k = 0;
+
+        for (k = 0; k < i; k++)
         {
             if (arrB[i] == arrB[k])
             {
                 scanf("%d", &arrB[i]);
                 k = 0;
+                /*n2--;
+                if (n2 == i)
+                {
+                    break;
+                }*/
             }
-            k++;
         }
     }
 

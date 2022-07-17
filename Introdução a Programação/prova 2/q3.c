@@ -177,8 +177,6 @@ int main()
       }
     }
 
-    // if (grau == 2 || ano > 6)
-
     printf("Bem vindo(a) a Escola! Suas aulas serao na sala %d do andar %d do bloco %d.\n", sala, andar, bloco);
 
     n--;
