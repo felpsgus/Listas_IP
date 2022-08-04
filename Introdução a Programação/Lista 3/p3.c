@@ -1,70 +1,59 @@
 #include <stdio.h>
+#include <string.h>
 
-int calcularLetras(int x, char a[x])
+int consoantes(char x)
 {
-  int i;
-  int cont = 0;
-  for (i = 'a'; i <= 'z'; i++)
-  {
-    cont++;
-  }
+  int i, size;
+  char letras[] = {'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'v', 'w', 'x', 'y', 'z', 'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'};
 
-  for (i = 'A'; i <= 'Z'; i++)
+  size = strlen(letras);
+  for (i = 0; i < size; i++)
   {
-    cont++;
-  }
-
-  return cont;
-}
-
-int calcularVogal(int x, char a[x])
-{
-  int i;
-  int cont = 0;
-  for (i = 0; i < 10000; i++)
-  {
-    if (a[i] == 'a' || a[i] == 'e' || a[i] == 'i' || a[i] == 'o' || a[i] == 'u' || a[i] == 'A' || a[i] == 'E' || a[i] == 'I' || a[i] == 'O' || a[i] == 'U')
+    if (letras[i] == x)
     {
-      cont++;
+      return 1;
     }
   }
-  return cont;
-}
-
-int calcularConsoante(int x, char a[x])
-{
-  int i;
-  int cont = 0;
-  for (i = 0; i < 10000; i++)
-  {
-    if (a[i] == 'b' || a[i] == 'c' || a[i] == 'd' || a[i] == 'f' || a[i] == 'g' || a[i] == 'h' || a[i] == 'j' || a[i] == 'k' || a[i] == 'l' || a[i] == 'm' || a[i] == 'n' || a[i] == 'p' || a[i] == 'q' || a[i] == 'r' || a[i] == 's' || a[i] == 't' || a[i] == 'v' || a[i] == 'w' || a[i] == 'x' || a[i] == 'y' || a[i] == 'z' || a[i] == 'B' || a[i] == 'C' || a[i] == 'D' || a[i] == 'F' || a[i] == 'G' || a[i] == 'H' || a[i] == 'J' || a[i] == 'K' || a[i] == 'L' || a[i] == 'M' || a[i] == 'N' || a[i] == 'P' || a[i] == 'Q' || a[i] == 'R' || a[i] == 'S' || a[i] == 'T' || a[i] == 'V' || a[i] == 'W' || a[i] == 'X' || a[i] == 'Y' || a[i] == 'Z')
-    {
-      cont++;
-    }
-  }
-  return cont;
+  return 0;
 }
 
 int main()
 {
-  int n, i, x = 0;
-
-  char a[10000];
+  int n, i, size;
+  char string[10000];
 
   scanf("%d", &n);
 
-  for (i = 0; i < n; i++)
+  while (n)
   {
-    while (scanf("%s", a[x]) != '\n')
+    int letras = 0, vogais = 0, consoante = 0;
+
+    getchar();
+    scanf("%[^\n]s", string);
+    size = strlen(string);
+
+    for (i = 0; i < size; i++)
     {
-      // scanf("%s", a[x]);
-      x++;
+      if (string[i] >= 65 && string[i] <= 90 || string[i] >= 97 && string[i] <= 122)
+      {
+        letras++;
+      }
+      if (string[i] == 65 || string[i] == 69 || string[i] == 73 || string[i] == 79 || string[i] == 85 || string[i] == 97 || string[i] == 101 || string[i] == 105 || string[i] == 111 || string[i] == 117)
+      {
+        vogais++;
+      }
+      if (consoantes(string[i]))
+      {
+        consoante++;
+      }
     }
+    printf("Letras = %d\n", letras);
+    printf("Vogais = %d\n", vogais);
+    printf("Consoantes = %d\n", consoante);
 
-    printf("%d\n", x);
-
-    x = 0;
-
-    printf("%d %d %d\n", calcularLetras(x, a), calcularVogal(x, a), calcularConsoante(x, a));
+    letras = 0;
+    vogais = 0;
+    consoante = 0;
+    n--;
   }
 }
