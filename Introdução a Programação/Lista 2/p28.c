@@ -1,77 +1,48 @@
 #include <stdio.h>
 #include <math.h>
 
-int lerN(void)
-{
-    int N, valido = 0;
-    scanf("%d", &N);
-    while (valido != 1)
-    {
-        if (1 <= N && N <= 100)
-        {
-            valido = 1;
-            return N;
-        }
-        else
-        {
-            scanf("%d", &N);
-        }
-    }
-}
+int i, k;
 
-int verificacao(int n, int N, int arr[N])
+int imprimirValor(int n, int *arr)
 {
-    int i, cont = 0;
-    for (i = 0; i < N; i++)
-    {
-        if (arr[i] == n)
-        {
-            cont++;
-        }
-    }
-    if (cont == 0)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-int imprimirValor(int n, int arr[n])
-{
-    int i;
+    printf("(");
     for (i = 0; i < n; i++)
     {
-        if (i == 0)
+        if (arr[i] != -1)
         {
-            printf("(");
-        }
-
-        printf("%d", arr[i]);
-
-        if (i == n - 1)
-        {
-            printf(")\n");
-        }
-        else
-        {
-            printf(",");
+            if (i != 0 && i < n)
+            {
+                printf(",");
+            }
+            printf("%d", arr[i]);
         }
     }
+    printf(")\n");
 }
 
-int criarUniao(int n1, int n2, int arrA[n1], int arrB[n2])
+int criarUniao(int n1, int n2, int *arrA, int *arrB)
 {
-    int i, n, j;
+    int n, j;
 
     n = n1 + n2;
 
-    j = n1;
+    int uniao[n], arrC[n2];
 
-    int uniao[n];
-    int igual[100];
+    for (i = 0; i < n2; i++)
+    {
+        arrC[i] = arrB[i];
+    }
+
+    for (i = 0; i < n1; i++)
+    {
+        for (k = 0; k < n2; k++)
+        {
+            if (arrA[i] == arrC[k])
+            {
+                arrC[k] = -1;
+            }
+        }
+    }
 
     for (i = 0; i < n1; i++)
     {
@@ -80,15 +51,7 @@ int criarUniao(int n1, int n2, int arrA[n1], int arrB[n2])
 
     for (i = 0; i < n2; i++)
     {
-        if (verificacao(arrB[i], n1, uniao))
-        {
-            uniao[j] = arrB[i];
-            j++;
-        }
-        else
-        {
-            n--;
-        }
+        uniao[i + n1] = arrC[i];
     }
 
     imprimirValor(n, uniao);
@@ -96,9 +59,7 @@ int criarUniao(int n1, int n2, int arrA[n1], int arrB[n2])
 
 int criarIntercecao(int n1, int n2, int arrA[n1], int arrB[n2])
 {
-    int i, n, j, h = 0;
-
-    int intercecao[n1];
+    int j, n = 0, intercecao[n1];
 
     for (i = 0; i < n2; i++)
     {
@@ -106,74 +67,60 @@ int criarIntercecao(int n1, int n2, int arrA[n1], int arrB[n2])
         {
             if (arrA[j] == arrB[i])
             {
-                intercecao[h] = arrA[j];
-                h++;
+                intercecao[n] = arrA[j];
+                n++;
             }
         }
-    }
-
-    n = h;
-
-    if (h == 0)
-    {
-        printf("()\n");
     }
 
     imprimirValor(n, intercecao);
 }
 
+void leitura(int n, int arr[n])
+{
+    for (i = 0; i < n; i++)
+    {
+        scanf("%d", arr + i);
+
+        for (k = 0; k < i; k++)
+        {
+            if (arr[k] == arr[i])
+            {
+                i--;
+                break;
+            }
+        }
+    }
+}
+
 int main()
 {
-    int n1, n2, i, k;
+    int n1, n2;
 
-    n1 = lerN();
-    n2 = lerN();
+    while (1)
+    {
+        scanf("%d", &n1);
+        if (n1 >= 1 && n1 <= 100)
+        {
+            break;
+        }
+    }
+
+    while (1)
+    {
+        scanf("%d", &n2);
+        if (n2 >= 1 && n2 <= 100)
+        {
+            break;
+        }
+    }
 
     int arrA[n1];
     int arrB[n2];
 
-    for (i = 0; i < n1; i++)
-    {
-        scanf("%d", &arrA[i]);
-
-        k = 0;
-        for (k = 0; k < i; k++)
-        {
-            if (arrA[i] == arrA[k])
-            {
-                scanf("%d", &arrA[i]);
-                k = 0;
-                /*n1--;
-                if (n1 == i)
-                {
-                    break;
-                }*/
-            }
-        }
-    }
-
-    for (i = 0; i < n2; i++)
-    {
-        scanf("%d", &arrB[i]);
-
-        k = 0;
-
-        for (k = 0; k < i; k++)
-        {
-            if (arrB[i] == arrB[k])
-            {
-                scanf("%d", &arrB[i]);
-                k = 0;
-                /*n2--;
-                if (n2 == i)
-                {
-                    break;
-                }*/
-            }
-        }
-    }
+    leitura(n1, arrA);
+    leitura(n2, arrB);
 
     criarUniao(n1, n2, arrA, arrB);
-
     criarIntercecao(n1, n2, arrA, arrB);
 }

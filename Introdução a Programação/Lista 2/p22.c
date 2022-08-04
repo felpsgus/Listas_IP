@@ -1,75 +1,51 @@
 #include <stdio.h>
-#include <math.h>
-
-int quadrado(int n)
-{
-  int valor = 1, i;
-
-  for (i = 0; i < n; i++)
-  {
-    valor *= 10;
-  }
-
-  return valor;
-}
+#include <string.h>
 
 int main()
 {
-  int i, n, d, x, y, numero, resto = 1, expoente, maiorvalor = 0, indice = 0, j;
-
+  int i, k, x, n, d, numero, indice = 0, size, aux = 0;
+  char maiorvalor = '0';
   scanf("%d %d\n", &n, &d);
 
   while (n != 0)
   {
+    char string[n];
+    x = d - 1;
+
     scanf("%d\n", &numero);
+    sprintf(string, "%d", numero);
 
-    int a[n];
-
-    x = n - 1;
-
-    for (i = 0; i < n; i++)
+    for (k = 0; k < d; k++)
     {
-      expoente = quadrado(x);
-      a[i] = numero / expoente;
-      numero = numero % expoente;
-
-      resto = resto * 10;
-      x = x - 1;
-    }
-
-    y = d - 1;
-
-    for (j = 0; j < d; j++)
-    {
-      if (y > 0)
+      if (x > 0)
       {
-        for (i = indice; i < n - y; i++)
+        for (i = indice; i < n - x; i++)
         {
-          if (maiorvalor < a[i])
+          if (maiorvalor < string[i])
           {
-            maiorvalor = a[i];
+            maiorvalor = string[i];
             indice = i + 1;
           }
         }
-        printf("%d", maiorvalor);
+        printf("%c", maiorvalor);
       }
       else
       {
         for (i = indice; i < n; i++)
         {
-          if (maiorvalor < a[i])
+          if (maiorvalor < string[i])
           {
-            maiorvalor = a[i];
+            maiorvalor = string[i];
           }
         }
-        printf("%d\n", maiorvalor);
+        printf("%c\n", maiorvalor);
       }
-
-      maiorvalor = 0;
-      y--;
+      maiorvalor = '0';
+      x--;
     }
     indice = 0;
-
     scanf("%d %d\n", &n, &d);
   }
+
+  return 0;
 }

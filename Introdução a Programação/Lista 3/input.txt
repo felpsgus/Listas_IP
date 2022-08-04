@@ -1,5 +1,4 @@
-4
-Este e um caso de teste dos varios possiveis
-Vem ver vovo!
-O presidente renunciou?
-#chapeuzinho#Vermelho#
+3
+1 5
+10 13
+98 101

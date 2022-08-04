@@ -2,7 +2,7 @@
 #include <string.h>
 #include <math.h>
 
-int imprimirValor(int n, int arr[n])
+int imprimirValor(int n, int *arr)
 {
   int i;
   for (i = 0; i < n; i++)
@@ -25,35 +25,6 @@ int imprimirValor(int n, int arr[n])
   }
 }
 
-int letra(char x)
-{
-  switch (x)
-  {
-  case 'a':
-    return 1;
-  case 'A':
-    return 1;
-  case 'e':
-    return 2;
-  case 'E':
-    return 2;
-  case 'i':
-    return 3;
-  case 'I':
-    return 3;
-  case 'o':
-    return 4;
-  case 'O':
-    return 4;
-  case 'u':
-    return 5;
-  case 'U':
-    return 5;
-  }
-
-  return 0;
-}
-
 int main()
 {
   int i;
@@ -66,31 +37,46 @@ int main()
 
   scanf("%[^;]s", A);
   scanf("%[;^]s", end);
-  scanf("%[^.\n]s", B);
+  scanf("%[^\n]s", B);
 
   if (end[0] == ';')
   {
     for (i = 0; i < strlen(A); i++)
     {
-      switch (letra(A[i]))
+      switch (A[i])
       {
-      case 1:
+      case 'a':
+        numA[0]++;
+        break;
+      case 'A':
         numA[0]++;
         break;
 
-      case 2:
+      case 'e':
+        numA[1]++;
+        break;
+      case 'E':
         numA[1]++;
         break;
 
-      case 3:
+      case 'i':
+        numA[2]++;
+        break;
+      case 'I':
         numA[2]++;
         break;
 
-      case 4:
+      case 'o':
+        numA[3]++;
+        break;
+      case 'O':
         numA[3]++;
         break;
 
-      case 5:
+      case 'u':
+        numA[4]++;
+        break;
+      case 'U':
         numA[4]++;
         break;
       }
@@ -98,32 +84,47 @@ int main()
 
     for (i = 0; i < strlen(B); i++)
     {
-      switch (letra(B[i]))
+      switch (B[i])
       {
-      case 1:
+      case 'a':
         numB[0]++;
         break;
-      case 2:
+      case 'A':
+        numB[0]++;
+        break;
+
+      case 'e':
         numB[1]++;
         break;
-      case 3:
+      case 'E':
+        numB[1]++;
+        break;
+
+      case 'i':
+        numB[2]++;
+        break;
+      case 'I':
         numB[2]++;
         break;
 
-      case 4:
+      case 'o':
         numB[3]++;
         break;
-      case 5:
+      case 'O':
+        numB[3]++;
+        break;
+
+      case 'u':
+        numB[4]++;
+        break;
+      case 'U':
         numB[4]++;
         break;
       }
     }
-
     imprimirValor(5, numA);
     imprimirValor(5, numB);
-
     frequencia = sqrt(pow(numA[0] - numB[0], 2) + pow(numA[1] - numB[1], 2) + pow(numA[2] - numB[2], 2) + pow(numA[3] - numB[3], 2) + pow(numA[4] - numB[4], 2));
-
     printf("%.2f\n", frequencia);
   }
   else

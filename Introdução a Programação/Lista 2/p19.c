@@ -55,7 +55,7 @@ int main()
 
   for (i = 0; i < j; i++)
   {
-    if (unicos[i] != 0)
+    if (unicos[i] != 1000000)
     {
       printf("%d\n", unicos[i]);
     }

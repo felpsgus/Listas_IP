@@ -3,41 +3,30 @@
 
 int main()
 {
-  int i = 1, n;
-  double ax, ay, az, bx, by, bz, cx, cy, cz;
-  double distancia;
+  int i, n;
+  double a[3], b[3], cx, cy, cz;
+  double distancia, maxdist = 0;
 
   scanf("%d", &n);
+  n--;
+  scanf("%lf %lf %lf", &a[0], &a[1], &a[2]);
 
-  scanf("%lf %lf %lf", &ax, &ay, &az);
-
-  while (i != n)
+  while (n--)
   {
-    scanf("%lf %lf %lf", &bx, &by, &bz);
-
-    cx = fabs(bx - ax);
-    cy = fabs(by - ay);
-    cz = fabs(bz - az);
-
-    if (cx > cy && cx > cz)
+    scanf("%lf %lf %lf", &b[0], &b[1], &b[2]);
+    for (i = 0; i < 3; i++)
     {
-      distancia = cx;
+      distancia = fabs(b[i] - a[i]);
+      if (distancia > maxdist)
+      {
+        maxdist = distancia;
+      }
     }
-    else if (cy > cx && cy > cz)
-    {
-      distancia = cy;
-    }
-    else
-    {
-      distancia = cz;
-    }
+    printf("%.2f\n", maxdist);
 
-    printf("%.2f\n", distancia);
-
-    ax = bx;
-    ay = by;
-    az = bz;
-
-    i++;
+    a[0] = b[0];
+    a[1] = b[1];
+    a[2] = b[2];
+    maxdist = 0;
   }
 }

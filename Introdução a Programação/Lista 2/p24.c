@@ -1,44 +1,68 @@
 #include <stdio.h>
 
+int i, k;
+
+void countigsort(int *arr, int n, int maior)
+{
+  int count[maior], ordem[n];
+
+  for (i = 0; i <= maior; i++)
+  {
+    count[i] = 0;
+  }
+
+  for (i = 0; i < n; i++)
+  {
+    count[arr[i]]++;
+  }
+
+  for (i = 1; i < maior; i++)
+  {
+    count[i] += count[i - 1];
+  }
+
+  for (i = n - 1; i >= 0; i--)
+  {
+    ordem[count[arr[i]] - 1] = arr[i];
+    count[arr[i]]--;
+  }
+
+  for (i = 0; i < n; i++)
+  {
+    arr[i] = ordem[i];
+  }
+
+  for (i = 0; i < n; i++)
+  {
+    printf("%d ", arr[i]);
+  }
+  printf("\n");
+}
+
 int main()
 {
-  int i, n, k, aux;
-
-  scanf("%d", &n);
-
-  while (n != 0)
+  while (1)
   {
-    int A[n];
-
-    for (i = 0; i < n; i++)
-    {
-      scanf("%d", &A[i]);
-    }
-
-    for (i = 0; i < n; i++)
-    {
-      for (k = i + 1; k < n; k++)
-      {
-        if (A[i] > A[k])
-        {
-          aux = A[i];
-          A[i] = A[k];
-          A[k] = aux;
-        }
-      }
-    }
-
-    for (i = 0; i < n; i++)
-    {
-      printf("%d", A[i]);
-      if (i != n - 1)
-      {
-        printf(" ");
-      }
-    }
-
-    printf("\n");
-
+    int n, maior = 0;
     scanf("%d", &n);
+    int arr[n];
+
+    if (n == 0)
+    {
+      return 0;
+    }
+
+    for (i = 0; i < n; i++)
+    {
+      scanf("%d", arr + i);
+      if (arr[i] > maior)
+      {
+        maior = arr[i];
+      }
+    }
+
+    maior++;
+
+    countigsort(arr, n, maior);
   }
 }
