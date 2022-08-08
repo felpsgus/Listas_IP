@@ -4,34 +4,31 @@
 
 int i;
 
-char *prefixo(int n, char *frase)
-{
-  char np[n];
-
-  for (i = 0; i < n; i++)
-  {
-    np[i] = frase[i];
-  }
-
-  return np;
-}
-
 int main()
 {
-  int n, np, cont = 0;
-  char *frase = malloc(499 * sizeof(char));
-  unsigned char *end;
+  int n, np, index = 0;
+  char frase[500], print[500];
 
   scanf("%d", &n);
 
   while (n--)
   {
+    for (i = 0; i < 500; i++)
+    {
+      frase[i] = '\0';
+      print[i] = '\0';
+    }
     getchar();
     scanf("%d", &np);
     getchar();
     scanf("%[^\n]s", frase);
 
-    end = prefixo(np, frase);
-    printf("%s\n", &end);
+    for (i = 0; i < np; i++)
+    {
+      print[index] = frase[i];
+      index++;
+    }
+    printf("%s\n", print);
+    index = 0;
   }
 }
