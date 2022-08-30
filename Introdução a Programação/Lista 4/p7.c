@@ -15,9 +15,9 @@ int main()
     }
   }
 
-  for (i = 0; i < 3; i++)
+  for (i = 0; i < 4; i++)
   {
-    for (k = 0; k < 3; k++)
+    for (k = 0; k < 4; k++)
     {
       for (j = i; j < 3 + i; j++)
       {
@@ -26,6 +26,8 @@ int main()
           soma += matriz[j][l];
         }
       }
+      soma -= matriz[i + 1][k];
+      soma -= matriz[i + 1][k + 2];
       if (soma > maiorsoma)
       {
         maiorsoma = soma;
