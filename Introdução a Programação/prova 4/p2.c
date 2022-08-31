@@ -2,7 +2,7 @@
 
 int main()
 {
-  int i, k, j, l, n, aux = 0;
+  int i, k, j, l, n, aux, x = 1, media = 0;
   char letra;
   scanf("%c", &letra);
   scanf("%d", &n);
@@ -16,58 +16,39 @@ int main()
     }
   }
 
-  for (i = 0; i < n; i++)
-  {
-    for (j = 0; j < n; j++)
-    {
-      printf("%.2lf ", matriz[i][j]);
-    }
-    printf("\n");
-  }
+  aux = n / 2;
 
   switch (letra)
   {
     {
     case 'S':
-      for (i = 0; i < n; i++)
+      for (i = n - 1; i > aux; i--)
       {
-        for (j = 0; j < n; j++)
+        for (k = x; k < n - x; k++)
         {
-          for (k = 0; k < n; k++)
-          {
-            for (l = 0; l < n; l++)
-            {
-              if ((k > i && l > i) && (k < j && l < j))
-              {
-                soma += matriz[k][l];
-              }
-            }
-          }
+          soma += matriz[k][i];
         }
+        x++;
       }
       printf("%.2lf\n", soma);
       return 0;
       break;
 
     case 'M':
-      for (i = 0; i < n; i++)
+      for (i = n - 1; i > aux; i--)
       {
-        for (j = 0; j < n; j++)
+        for (k = x; k < n - x; k++)
         {
-          for (k = 0; k < n; k++)
-          {
-            for (l = 0; l < n; l++)
-            {
-              if ((k > i && l > i) && (k < j && l < j))
-              {
-                soma += matriz[k][l];
-                aux++;
-              }
-            }
-          }
+          soma += matriz[k][i];
+          media++;
         }
+        x++;
       }
-      soma /= aux;
+      if (soma > 0)
+      {
+        soma /= media;
+      }
+
       printf("%.2lf\n", soma);
       return 0;
     }
